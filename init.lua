@@ -18,11 +18,16 @@ local g = vim.g
 -- Set <leader> key
 g.mapleader = [[ ]]
 
+o.termguicolors = true
+o.lazyredraw = true
+
 require'lazy'.setup('plugins', {
   install = {
     colorscheme = { 'default' },
   }
 })
+
+o.inccommand = 'nosplit'
 
 -- Set default tab size
 o.tabstop = 2
