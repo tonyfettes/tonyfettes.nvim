@@ -3,9 +3,9 @@ return {
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
   },
-  config = function ()
-    local lspconfig = require'lspconfig'
-    local capabilities = require'cmp_nvim_lsp'.default_capabilities()
+  config = function()
+    local lspconfig = require 'lspconfig'
+    local capabilities = require 'cmp_nvim_lsp'.default_capabilities()
 
     lspconfig.clangd.setup {
       capabilities = capabilities
@@ -20,7 +20,7 @@ return {
       capabilities = capabilities,
       on_init = function(client)
         local path = client.workspace_folders[1].name
-        if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
+        if not vim.loop.fs_stat(path .. '/.luarc.json') and not vim.loop.fs_stat(path .. '/.luarc.jsonc') then
           client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
             Lua = {
               runtime = {
@@ -54,7 +54,7 @@ return {
     -- after the language server attaches to the current buffer
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-      callback = function (ev)
+      callback = function(ev)
         local bufnr = ev.buf
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
@@ -84,32 +84,24 @@ return {
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
         vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        vim.keymap.set('n', '<space>f', function()
+        vim.keymap.set('n', '<space>=', function()
           vim.lsp.buf.format { async = true }
         end, opts)
 
         -- Open a float window when there are diagnostics under cursor.
         vim.api.nvim_create_autocmd('CursorHold', {
           buffer = ev.buf,
-          callback = function ()
+          callback = function()
             vim.diagnostic.open_float(nil, {
               focusable = false,
               close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
-              source = 'always',
+              source = 'if_many',
               scope = 'cursor'
             })
           end
         })
 
         if client.server_capabilities.documentHighlightProvider then
-          -- hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-          -- hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-          -- hi! LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-          vim.cmd[[
-            hi! LspReferenceRead guibg=#f6f5f4
-            hi! LspReferenceText guibg=#f6f5f4
-            hi! LspReferenceWrite guibg=#f6f5f4
-          ]]
           vim.api.nvim_create_augroup('lsp_document_highlight', {
             clear = false
           })
@@ -132,7 +124,7 @@ return {
     })
 
     vim.diagnostic.config {
-      signs = false
+      signs = false,
     }
   end,
 }

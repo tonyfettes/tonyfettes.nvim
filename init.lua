@@ -18,15 +18,17 @@ local g = vim.g
 -- Set <leader> key
 g.mapleader = [[ ]]
 
+-- Set the terminal to use true color
 o.termguicolors = true
-o.lazyredraw = true
 
+-- Loads plugins
 require'lazy'.setup('plugins', {
   install = {
     colorscheme = { 'default' },
   }
 })
 
+-- Shows the effects of substitution and search
 o.inccommand = 'nosplit'
 
 -- Set default tab size
@@ -53,3 +55,6 @@ vim.filetype.add {
     rei = 'reason',
   }
 }
+
+-- Connect Neovim's clipboard to the system one.
+vim.cmd[[set clipboard+=unnamedplus]]

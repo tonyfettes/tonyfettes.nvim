@@ -41,15 +41,15 @@ return {
     main = 'ibl',
     opts = {
       indent = {
-        highlight = 'Whitespace',
+        highlight = 'VertSplit',
         char = '▏'
       },
       scope = {
-        highlight = 'Whitespace',
+        highlight = 'VertSplit',
         char = '▎',
-        show_start = true,
-        show_end = true,
-        show_exact_scope = true
+        show_start = false,
+        show_end = false,
+        show_exact_scope = false
       },
     }
   },
@@ -99,4 +99,13 @@ return {
       },
     },
   },
+
+  {
+    'danielo515/nvim-treesitter-reason',
+  },
+
+  {
+    dir = '~/.opam/merlin/vim',
+    name = 'merlin.vim'
+  }
 }
