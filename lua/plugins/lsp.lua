@@ -16,6 +16,12 @@ return {
     lspconfig.tsserver.setup {
       capabilities = capabilities
     }
+    lspconfig.pyright.setup {
+      capabilities = capabilities
+    }
+    lspconfig.rust_analyzer.setup {
+      capabilities = capabilities
+    }
     lspconfig.lua_ls.setup {
       capabilities = capabilities,
       on_init = function(client)

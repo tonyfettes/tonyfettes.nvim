@@ -4,7 +4,7 @@ return {
     build = ':TSUpdate',
     config = function ()
       require'nvim-treesitter.configs'.setup {
-        ensure_installed = { 'lua', 'vim', 'vimdoc', 'query', 'rust', 'ocaml' },
+        ensure_installed = { 'lua', 'vim', 'vimdoc', 'query', 'rust', 'ocaml', 'python' },
         highlight = {
           enable = 'true',
         }
