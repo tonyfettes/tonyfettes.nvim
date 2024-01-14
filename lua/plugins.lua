@@ -6,7 +6,10 @@ return {
       require'nvim-treesitter.configs'.setup {
         ensure_installed = { 'lua', 'vim', 'vimdoc', 'query', 'rust', 'ocaml', 'python' },
         highlight = {
-          enable = 'true',
+          enable = true,
+        },
+        indent = {
+          enable = true
         }
       }
     end
