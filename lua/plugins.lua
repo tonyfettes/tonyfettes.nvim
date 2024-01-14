@@ -55,8 +55,11 @@ return {
   },
 
   {
-    dir = '~/workspace/moonbit/moonbit.nvim',
-    ft = { 'moonbit', 'moonmod', 'moonpkg' },
+    dir = '~/workspace/moonbit.nvim',
+    ft = { 'moonbit' },
+    dependencies = {
+      'mfussenegger/nvim-lint',
+    },
     opts = {}
   },
 
