@@ -10,6 +10,7 @@ return {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
     'petertriho/cmp-git',
+    'ray-x/cmp-treesitter'
   },
   config = function ()
     local cmp = require'cmp'
@@ -30,6 +31,7 @@ return {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
       }, {
+        { name = 'treesitter' },
         { name = 'buffer' },
       })
     }
