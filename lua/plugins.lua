@@ -17,6 +17,7 @@ return {
 
   {
     "nvim-treesitter/playground",
+    cmd = "TSPlaygroundToggle",
     config = function ()
       require'nvim-treesitter.configs'.setup {
         playground = {
@@ -111,10 +112,12 @@ return {
 
   {
     'danielo515/nvim-treesitter-reason',
+    ft = 'reason'
   },
 
   {
     dir = '~/.opam/merlin/vim',
-    name = 'merlin.vim'
+    name = 'merlin.vim',
+    ft = { 'reason', 'ocaml', },
   }
 }
