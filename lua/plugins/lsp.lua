@@ -107,6 +107,8 @@ return {
           end
         })
 
+        vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr(#{timeout_ms:250})')
+
         if client.server_capabilities.documentHighlightProvider then
           vim.api.nvim_create_augroup('lsp_document_highlight', {
             clear = false
