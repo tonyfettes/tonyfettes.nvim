@@ -62,6 +62,9 @@ return {
 
   {
     'stevearc/overseer.nvim',
+    keys = {
+      { '<leader>o', '<Cmd>OverseerToggle bottom<CR>', desc = 'Toggle Overseer' },
+    },
     config = function ()
       local overseer = require'overseer'
       overseer.setup {}
