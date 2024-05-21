@@ -79,15 +79,6 @@ return {
         local bufnr = ev.buf
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
-        if client.server_capabilities.completionProvider then
-          -- Enable completion triggered by <c-x><c-o>
-          vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
-        end
-
-        if client.server_capabilities.definitionProvider then
-          vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
-        end
-
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf }
@@ -122,9 +113,7 @@ return {
           end
         })
 
-        vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr(#{timeout_ms:250})')
-
-        if client.server_capabilities.documentHighlightProvider then
+        if client and client.server_capabilities.documentHighlightProvider then
           vim.api.nvim_create_augroup('lsp_document_highlight', {
             clear = false
           })
