@@ -1,7 +1,8 @@
 return {
   'nvim-tree/nvim-tree.lua',
   keys = {
-    { '<leader>e', '<Cmd>NvimTreeToggle<CR>', desc = "Open Tree"  }
+    { '<Leader>e', '<Cmd>NvimTreeToggle<CR>', desc = "Open Tree" },
+    { '<M-e>',     '<Cmd>NvimTreeToggle<CR>', desc = "Open Tree" }
   },
   config = function ()
     vim.g.loaded_netrw = 1

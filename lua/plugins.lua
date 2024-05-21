@@ -105,4 +105,17 @@ return {
   {
     "lervag/vimtex",
   },
+
+  {
+    "numToStr/Navigator.nvim",
+    config = function ()
+      local navigator = require'Navigator'
+      navigator.setup {}
+      vim.keymap.set({ 'n', 't' }, '<M-h>', '<Cmd>NavigatorLeft<CR>')
+      vim.keymap.set({ 'n', 't' }, '<M-l>', '<Cmd>NavigatorRight<CR>')
+      vim.keymap.set({ 'n', 't' }, '<M-k>', '<Cmd>NavigatorUp<CR>')
+      vim.keymap.set({ 'n', 't' }, '<M-j>', '<Cmd>NavigatorDown<CR>')
+      vim.keymap.set({ 'n', 't' }, '<M-p>', '<Cmd>NavigatorPrevious<CR>')
+    end
+  },
 }

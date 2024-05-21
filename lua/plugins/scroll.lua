@@ -1,6 +1,6 @@
 return {
-  -- {
-  --   'lewis6991/satellite.nvim',
-  --   config = true
-  -- }
+  {
+    'lewis6991/satellite.nvim',
+    config = true
+  }
 }

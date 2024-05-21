@@ -62,6 +62,7 @@ vim.cmd[[set clipboard+=unnamedplus]]
 
 o.exrc = true
 
+-- Setup Emacs-like key-bindings in insert mode.
 vim.keymap.set('i', '<C-a>', '<Home>')
 vim.keymap.set('i', '<C-e>', '<End>')
 vim.keymap.set('i', '<C-b>', '<Left>')
