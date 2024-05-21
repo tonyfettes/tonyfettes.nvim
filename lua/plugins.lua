@@ -1,46 +1,5 @@
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    config = function ()
-      require'nvim-treesitter.configs'.setup {
-        ensure_installed = { 'lua', 'vim', 'vimdoc', 'query', 'rust', 'ocaml', 'python' },
-        highlight = {
-          enable = true,
-        },
-        indent = {
-          enable = true
-        }
-      }
-    end
-  },
-
-  {
-    "nvim-treesitter/playground",
-    cmd = "TSPlaygroundToggle",
-    config = function ()
-      require'nvim-treesitter.configs'.setup {
-        playground = {
-          enable = true,
-          disable = {},
-          keybindings = {
-            toggle_query_editor = 'o',
-            toggle_hl_groups = 'i',
-            toggle_injected_languages = 't',
-            toggle_anonymous_nodes = 'a',
-            toggle_language_display = 'I',
-            focus_language = 'f',
-            unfocus_language = 'F',
-            update = 'R',
-            goto_note = '<cr>',
-            show_help = '?',
-          }
-        }
-      }
-    end
-  },
-
-  {
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
     opts = {
@@ -56,6 +15,12 @@ return {
         show_exact_scope = false
       },
     }
+  },
+
+  {
+    'numToStr/Comment.nvim',
+    opts = {},
+    lazy = false,
   },
 
   {
@@ -102,6 +67,9 @@ return {
 
   {
     "nvim-neorg/neorg",
+    dependencies = {
+      { "vhyrro/luarocks.nvim", priority = 1000, config = true }
+    },
     ft = "norg",
     opts = {
       load = {
@@ -119,5 +87,22 @@ return {
     dir = '~/.opam/merlin/vim',
     name = 'merlin.vim',
     ft = { 'reason', 'ocaml', },
-  }
+  },
+
+  {
+    'tomtomjhj/coq-lsp.nvim',
+    dependencies = {
+      { 'whonore/Coqtail', ft = { 'coq' } }
+    },
+    ft = { 'coq' },
+    config = function ()
+      vim.g.loaded_coqtail = 1
+      vim.g["coqtail#supported"] = 0
+      require'coq-lsp'.setup {}
+    end
+  },
+
+  {
+    "lervag/vimtex",
+  },
 }

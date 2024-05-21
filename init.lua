@@ -49,6 +49,7 @@ o.cmdheight = 0
 
 o.background = 'light'
 
+vim.cmd[[filetype plugin indent on]]
 vim.filetype.add {
   extension = {
     re = 'reason',
@@ -58,3 +59,10 @@ vim.filetype.add {
 
 -- Connect Neovim's clipboard to the system one.
 vim.cmd[[set clipboard+=unnamedplus]]
+
+o.exrc = true
+
+vim.keymap.set('i', '<C-a>', '<Home>')
+vim.keymap.set('i', '<C-e>', '<End>')
+vim.keymap.set('i', '<C-b>', '<Left>')
+vim.keymap.set('i', '<C-f>', '<Right>')
