@@ -7,7 +7,7 @@ return {
       { '<M-Enter>', '<Cmd>ToggleTerm<CR>', desc = 'Toggle Terminal' }
     },
     opts = {
-      open_mapping = { 'C-\\', '<M-Enter>' }
+      open_mapping = { '<C-\\>', '<M-Enter>' }
     }
   }
 }
