@@ -16,6 +16,9 @@ return {
     lspconfig.ocamllsp.setup {
       capabilities = capabilities
     }
+    lspconfig.jsonls.setup {
+      capabilities = capabilities
+    }
     lspconfig.tsserver.setup {
       capabilities = capabilities
     }
