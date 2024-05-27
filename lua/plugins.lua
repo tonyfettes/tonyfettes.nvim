@@ -79,7 +79,7 @@ return {
   },
 
   {
-    'danielo515/nvim-treesitter-reason',
+    dir = '~/workspace/nvim-treesitter-reason',
     ft = 'reason'
   },
 
