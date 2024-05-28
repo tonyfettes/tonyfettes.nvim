@@ -2,8 +2,8 @@ return {
   {
     "NeogitOrg/neogit",
     keys = {
-      { '<leader>g', '<Cmd>Neogit kind=split<CR>', desc = 'Toggle Neogit' },
-      { '<M-g>', '<Cmd>Neogit kind=split<CR>', desc = 'Toggle Neogit' },
+      { '<leader>g', '<Cmd>Neogit kind=auto<CR>', desc = 'Toggle Neogit' },
+      { '<M-g>', '<Cmd>Neogit kind=auto<CR>', desc = 'Toggle Neogit' },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",

@@ -30,9 +30,6 @@ return {
       lspconfig.pyright.setup {
         capabilities = capabilities
       }
-      lspconfig.rust_analyzer.setup {
-        capabilities = capabilities
-      }
       lspconfig.texlab.setup {
         capabilities = capabilities,
         settings = {
