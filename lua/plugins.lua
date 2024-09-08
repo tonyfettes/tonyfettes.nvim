@@ -24,6 +24,11 @@ return {
   },
 
   {
+    'lambdalisue/vim-suda',
+    lazy = false
+  },
+
+  {
     dir = '~/workspace/moonbit.nvim',
     ft = { 'moonbit' },
     dependencies = {
@@ -124,4 +129,15 @@ return {
     version = '^4', -- Recommended
     lazy = false, -- This plugin is already lazy
   }
+  {
+    'isti115/agda.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    },
+    lazy = false,
+    config = function()
+      vim.g.agda_theme = 'light'
+    end
+  },
+
 }
