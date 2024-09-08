@@ -42,8 +42,8 @@ return {
     keys = {
       { '<leader>o', '<Cmd>OverseerToggle bottom<CR>', desc = 'Toggle Overseer' },
     },
-    config = function ()
-      local overseer = require'overseer'
+    config = function()
+      local overseer = require 'overseer'
       overseer.setup {}
       vim.api.nvim_create_user_command(
         'Make',
@@ -100,10 +100,10 @@ return {
       { 'whonore/Coqtail', ft = { 'coq' } }
     },
     ft = { 'coq' },
-    config = function ()
+    config = function()
       vim.g.loaded_coqtail = 1
       vim.g["coqtail#supported"] = 0
-      require'coq-lsp'.setup {}
+      require 'coq-lsp'.setup {}
     end
   },
 
@@ -113,8 +113,8 @@ return {
 
   {
     "numToStr/Navigator.nvim",
-    config = function ()
-      local navigator = require'Navigator'
+    config = function()
+      local navigator = require 'Navigator'
       navigator.setup {}
       vim.keymap.set({ 'n', 't' }, '<M-h>', '<Cmd>NavigatorLeft<CR>')
       vim.keymap.set({ 'n', 't' }, '<M-l>', '<Cmd>NavigatorRight<CR>')
@@ -127,8 +127,9 @@ return {
   {
     'mrcjkb/rustaceanvim',
     version = '^4', -- Recommended
-    lazy = false, -- This plugin is already lazy
-  }
+    lazy = false,   -- This plugin is already lazy
+  },
+
   {
     'isti115/agda.nvim',
     dependencies = {
