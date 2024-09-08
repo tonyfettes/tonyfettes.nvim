@@ -11,7 +11,9 @@ return {
       "sindrets/diffview.nvim",
       "ibhagwan/fzf-lua",
     },
-    config = true
+    opts = {
+      auto_show_console = false
+    }
   },
 
   {
