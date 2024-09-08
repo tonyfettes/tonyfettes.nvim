@@ -8,9 +8,6 @@ return {
       local lspconfig = require 'lspconfig'
       local capabilities = require 'cmp_nvim_lsp'.default_capabilities()
 
-      lspconfig.agda_ls.setup {
-        capabilities = capabilities
-      }
       lspconfig.clangd.setup {
         capabilities = capabilities
       }
@@ -20,7 +17,7 @@ return {
       lspconfig.jsonls.setup {
         capabilities = capabilities
       }
-      lspconfig.tsserver.setup {
+      lspconfig.ts_ls.setup {
         capabilities = capabilities
       }
       lspconfig.tailwindcss.setup {
