@@ -10,9 +10,10 @@ return {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
     'petertriho/cmp-git',
-    'ray-x/cmp-treesitter'
+    'ray-x/cmp-treesitter',
+    'zbirenbaum/copilot-cmp',
   },
-  config = function ()
+  config = function()
     local has_words_before = function()
       unpack = unpack or table.unpack
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -22,11 +23,12 @@ return {
     local function replace_termcodes(str)
       return vim.api.nvim_replace_termcodes(str, true, true, true)
     end
-    local cmp = require'cmp'
-    local luasnip = require'luasnip'
+    local cmp = require 'cmp'
+    local luasnip = require 'luasnip'
+    require "copilot_cmp".setup {}
     cmp.setup {
       snippet = {
-        expand = function (args)
+        expand = function(args)
           luasnip.lsp_expand(args.body)
         end
       },
@@ -34,7 +36,7 @@ return {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable() 
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
             -- that way you will only jump inside the snippet region
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
@@ -53,14 +55,14 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ['<C-n>'] = cmp.mapping(function (callback)
+        ['<C-n>'] = cmp.mapping(function(callback)
           if cmp.visible() then
             cmp.select_next_item()
           else
             vim.api.nvim_feedkeys(replace_termcodes('<Down>'), 'n', true)
           end
         end, { "i", "s" }),
-        ['<C-p>'] = cmp.mapping(function (callback)
+        ['<C-p>'] = cmp.mapping(function(callback)
           if cmp.visible() then
             cmp.select_prev_item()
           else
@@ -74,7 +76,9 @@ return {
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
       },
       sources = cmp.config.sources({
+        { name = 'copilot' },
         { name = 'nvim_lsp' },
+        { name = 'path' },
         { name = 'luasnip' },
       }, {
         { name = 'treesitter' },
@@ -107,4 +111,3 @@ return {
     })
   end,
 }
-
