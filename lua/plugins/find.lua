@@ -3,8 +3,10 @@ return {
   cmd = 'Telescope',
   keys = {
     { '<Leader>f', '<Cmd>Telescope find_files<CR>', desc = 'Find Files' },
+    { '<Leader>b', '<Cmd>Telescope buffer<CR>', desc = 'Buffers' },
     { '<Leader>/', '<Cmd>Telescope live_grep<CR>', desc = 'Live Grep' },
     { '<M-f>', '<Cmd>Telescope find_files<CR>', desc = 'Find Files' },
+    { '<M-b>', '<Cmd>Telescope buffer<CR>', desc = 'Buffers' },
     { '<M-/>', '<Cmd>Telescope live_grep<CR>', desc = 'Live Grep' },
   },
   dependencies = {
