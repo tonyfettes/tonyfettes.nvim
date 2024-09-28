@@ -3,6 +3,7 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
+      "b0o/schemastore.nvim",
     },
     config = function()
       local lspconfig = require 'lspconfig'
@@ -15,7 +16,11 @@ return {
         capabilities = capabilities
       }
       lspconfig.jsonls.setup {
-        capabilities = capabilities
+        capabilities = capabilities,
+        settings = {
+          schemas = require'schemastore'.json.schemas(),
+          validate = { enable = true },
+        }
       }
       lspconfig.ts_ls.setup {
         capabilities = capabilities
@@ -114,6 +119,13 @@ return {
                 source = 'if_many',
                 scope = 'cursor'
               })
+            end
+          })
+
+          vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+            buffer = ev.buf,
+            callback = function()
+              vim.lsp.codelens.refresh({ bufnr = 0 })
             end
           })
 
