@@ -3,7 +3,7 @@ return {
     'akinsho/toggleterm.nvim',
     version = "*",
     keys = {
-      { '<C-\\>', '<Cmd>ToggleTerm<CR>', desc = 'Toggle Terminal' },
+      { '<C-\\>',    '<Cmd>ToggleTerm<CR>', desc = 'Toggle Terminal' },
       { '<M-Enter>', '<Cmd>ToggleTerm<CR>', desc = 'Toggle Terminal' }
     },
     opts = {

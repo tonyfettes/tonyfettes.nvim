@@ -3,18 +3,18 @@ return {
   cmd = 'Telescope',
   keys = {
     { '<Leader>f', '<Cmd>Telescope find_files<CR>', desc = 'Find Files' },
-    { '<Leader>b', '<Cmd>Telescope buffers<CR>', desc = 'Buffers' },
-    { '<Leader>/', '<Cmd>Telescope live_grep<CR>', desc = 'Live Grep' },
-    { '<M-f>', '<Cmd>Telescope find_files<CR>', desc = 'Find Files' },
-    { '<M-b>', '<Cmd>Telescope buffers<CR>', desc = 'Buffers' },
-    { '<M-/>', '<Cmd>Telescope live_grep<CR>', desc = 'Live Grep' },
+    { '<Leader>b', '<Cmd>Telescope buffers<CR>',    desc = 'Buffers' },
+    { '<Leader>/', '<Cmd>Telescope live_grep<CR>',  desc = 'Live Grep' },
+    { '<M-f>',     '<Cmd>Telescope find_files<CR>', desc = 'Find Files' },
+    { '<M-b>',     '<Cmd>Telescope buffers<CR>',    desc = 'Buffers' },
+    { '<M-/>',     '<Cmd>Telescope live_grep<CR>',  desc = 'Live Grep' },
   },
   dependencies = {
     'nvim-lua/plenary.nvim'
   },
-  config = function ()
-    local telescope = require'telescope'
-    local actions = require'telescope.actions'
+  config = function()
+    local telescope = require 'telescope'
+    local actions = require 'telescope.actions'
     telescope.setup {
       defaults = {
         mappings = {

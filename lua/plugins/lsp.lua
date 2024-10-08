@@ -18,7 +18,7 @@ return {
       lspconfig.jsonls.setup {
         capabilities = capabilities,
         settings = {
-          schemas = require'schemastore'.json.schemas(),
+          schemas = require 'schemastore'.json.schemas(),
           validate = { enable = true },
         }
       }

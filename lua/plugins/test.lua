@@ -7,8 +7,8 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter"
     },
-    config = function ()
-      local neotest = require'neotest'
+    config = function()
+      local neotest = require 'neotest'
       neotest.setup {
         adapters = {
         }

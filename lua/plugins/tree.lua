@@ -4,11 +4,11 @@ return {
     { '<Leader>e', '<Cmd>NvimTreeToggle<CR>', desc = "Open Tree" },
     { '<M-e>',     '<Cmd>NvimTreeToggle<CR>', desc = "Open Tree" }
   },
-  config = function ()
+  config = function()
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
 
-    require'nvim-tree'.setup {
+    require 'nvim-tree'.setup {
       renderer = {
         icons = {
           show = {
