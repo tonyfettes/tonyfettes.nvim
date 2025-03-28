@@ -18,16 +18,32 @@ return {
       lspconfig.jsonls.setup {
         capabilities = capabilities,
         settings = {
-          schemas = require 'schemastore'.json.schemas(),
-          validate = { enable = true },
+          json = {
+            schemas = require 'schemastore'.json.schemas {
+              extra = {
+                {
+                  description = 'MoonBit Module JSON schema',
+                  fileMatch = { 'moon.mod.json' },
+                  name = 'moon.mod.json',
+                  url = '/home/tonyfettes/workspace/moonbit.nvim/schemas/mod.schema.json',
+                },
+                {
+                  description = 'MoonBit Package JSON schema',
+                  fileMatch = { 'moon.pkg.json' },
+                  name = 'moon.pkg.json',
+                  url = '/home/tonyfettes/workspace/moonbit.nvim/schemas/pkg.schema.json',
+                },
+              },
+            },
+            validate = { enable = true },
+          }
         }
+      }
+      lspconfig.html.setup {
+        capabilities = capabilities
       }
       lspconfig.ts_ls.setup {
         capabilities = capabilities
-      }
-      lspconfig.tailwindcss.setup {
-        capabilities = capabilities,
-        cmd = { "corepack", "pnpm", "exec", "tailwindcss-language-server", "--stdio" }
       }
       lspconfig.pyright.setup {
         capabilities = capabilities
@@ -77,21 +93,28 @@ return {
       -- Global mappings.
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
       vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float)
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
       vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-        callback = function(ev)
-          local bufnr = ev.buf
-          local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        callback = function(args)
+          local bufnr = args.buf
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+          -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
+          if client and client:supports_method('textDocument/completion') then
+            -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+            -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+            -- client.server_capabilities.completionProvider.triggerCharacters = chars
+
+            vim.lsp.completion.enable(true, client.id, args.buf, {autotrigger = true})
+          end
 
           -- Buffer local mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
-          local opts = { buffer = ev.buf }
+          local opts = { buffer = args.buf }
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
           vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
           vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
@@ -112,7 +135,7 @@ return {
 
           -- Open a float window when there are diagnostics under cursor.
           vim.api.nvim_create_autocmd('CursorHold', {
-            buffer = ev.buf,
+            buffer = args.buf,
             callback = function()
               vim.diagnostic.open_float(nil, {
                 focusable = false,
@@ -124,7 +147,7 @@ return {
           })
 
           vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-            buffer = ev.buf,
+            buffer = args.buf,
             callback = function()
               vim.lsp.codelens.refresh({ bufnr = 0 })
             end
