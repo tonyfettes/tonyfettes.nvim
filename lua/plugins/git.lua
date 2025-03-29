@@ -17,7 +17,6 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     opts = {
-      signcolumn = false,
       current_line_blame = true,
     },
   }
