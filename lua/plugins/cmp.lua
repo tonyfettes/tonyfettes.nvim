@@ -80,7 +80,6 @@ return {
         { name = 'path' },
         { name = 'luasnip' },
       }, {
-        { name = 'treesitter' },
         { name = 'buffer' },
       })
     }
