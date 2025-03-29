@@ -167,6 +167,7 @@ return {
       })
 
       vim.diagnostic.config {
+        virtual_lines = true,
         signs = false,
       }
     end,
