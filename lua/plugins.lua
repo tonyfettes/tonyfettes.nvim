@@ -29,7 +29,7 @@ return {
   },
 
   {
-    dir = '~/projects/moonbit.nvim',
+    'moonbit-community/moonbit.nvim',
     ft = { 'moonbit' },
     opts = {}
   },
