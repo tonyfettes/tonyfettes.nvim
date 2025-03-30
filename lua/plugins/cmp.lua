@@ -54,14 +54,14 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ['<C-n>'] = cmp.mapping(function(callback)
+        ['<C-n>'] = cmp.mapping(function()
           if cmp.visible() then
             cmp.select_next_item()
           else
             vim.api.nvim_feedkeys(replace_termcodes('<Down>'), 'n', true)
           end
         end, { "i", "s" }),
-        ['<C-p>'] = cmp.mapping(function(callback)
+        ['<C-p>'] = cmp.mapping(function()
           if cmp.visible() then
             cmp.select_prev_item()
           else

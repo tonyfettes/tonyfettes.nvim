@@ -55,7 +55,6 @@ return {
       vim.keymap.set({ 'n', 't' }, '<M-l>', '<Cmd>NavigatorRight<CR>')
       vim.keymap.set({ 'n', 't' }, '<M-k>', '<Cmd>NavigatorUp<CR>')
       vim.keymap.set({ 'n', 't' }, '<M-j>', '<Cmd>NavigatorDown<CR>')
-      -- vim.keymap.set({ 'n', 't' }, '<C-p>', '<Cmd>NavigatorPrevious<CR>')
     end
   },
 }
