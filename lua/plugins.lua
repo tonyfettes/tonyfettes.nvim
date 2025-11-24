@@ -33,6 +33,7 @@ return {
     ft = { 'moonbit' },
     opts = {}
   },
+
   {
     "nvim-neorg/neorg",
     dependencies = {

@@ -6,17 +6,13 @@ return {
       "b0o/schemastore.nvim",
     },
     config = function()
-      local lspconfig = require 'lspconfig'
       local capabilities = require 'cmp_nvim_lsp'.default_capabilities()
 
-      lspconfig.clangd.setup {
+      vim.lsp.config('*', {
         capabilities = capabilities
-      }
-      lspconfig.ocamllsp.setup {
-        capabilities = capabilities
-      }
-      lspconfig.jsonls.setup {
-        capabilities = capabilities,
+      })
+
+      vim.lsp.config('jsonls', {
         settings = {
           json = {
             schemas = require 'schemastore'.json.schemas {
@@ -38,18 +34,9 @@ return {
             validate = { enable = true },
           }
         }
-      }
-      lspconfig.html.setup {
-        capabilities = capabilities
-      }
-      lspconfig.ts_ls.setup {
-        capabilities = capabilities
-      }
-      lspconfig.pyright.setup {
-        capabilities = capabilities
-      }
-      lspconfig.texlab.setup {
-        capabilities = capabilities,
+      })
+
+      vim.lsp.config('texlab', {
         settings = {
           texlab = {
             forwardSearch = {
@@ -58,32 +45,67 @@ return {
             }
           }
         }
-      }
-      lspconfig.lua_ls.setup {
-        capabilities = capabilities,
+      })
+
+      vim.lsp.config('lua_ls', {
         on_init = function(client)
-          local path = client.workspace_folders[1].name
-          if vim.uv.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
-            return
+          if client.workspace_folders then
+            local path = client.workspace_folders[1].name
+            if
+                path ~= vim.fn.stdpath('config')
+                and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+            then
+              return
+            end
           end
+
           client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
             runtime = {
-              -- Tell the language server which version of Lua you're using
-              -- (most likely LuaJIT in the case of Neovim)
-              version = 'LuaJIT'
+              -- Tell the language server which version of Lua you're using (most
+              -- likely LuaJIT in the case of Neovim)
+              version = 'LuaJIT',
+              -- Tell the language server how to find Lua modules same way as Neovim
+              -- (see `:h lua-module-load`)
+              path = {
+                'lua/?.lua',
+                'lua/?/init.lua',
+              },
             },
+            -- Make the server aware of Neovim runtime files
             workspace = {
               checkThirdParty = false,
               library = {
                 vim.env.VIMRUNTIME
-              },
+                -- Depending on the usage, you might want to add additional paths
+                -- here.
+                -- '${3rd}/luv/library'
+                -- '${3rd}/busted/library'
+              }
+              -- Or pull in all of 'runtimepath'.
+              -- NOTE: this is a lot slower and will cause issues when working on
+              -- your own configuration.
+              -- See https://github.com/neovim/nvim-lspconfig/issues/3189
+              -- library = {
+              --   vim.api.nvim_get_runtime_file('', true),
+              -- }
             }
           })
         end,
         settings = {
           Lua = {}
         }
-      }
+      })
+
+      vim.lsp.enable({
+        'clangd',
+        'ocamllsp',
+        'html',
+        'jsonls',
+        'ts_ls',
+        'pyright',
+        'texlab',
+        'lua_ls',
+      })
 
       -- Global mappings.
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
