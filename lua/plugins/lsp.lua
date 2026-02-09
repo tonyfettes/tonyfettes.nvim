@@ -15,22 +15,6 @@ return {
       vim.lsp.config('jsonls', {
         settings = {
           json = {
-            schemas = require 'schemastore'.json.schemas {
-              extra = {
-                {
-                  description = 'MoonBit Module JSON schema',
-                  fileMatch = { 'moon.mod.json' },
-                  name = 'moon.mod.json',
-                  url = '/home/tonyfettes/workspace/moonbit.nvim/schemas/mod.schema.json',
-                },
-                {
-                  description = 'MoonBit Package JSON schema',
-                  fileMatch = { 'moon.pkg.json' },
-                  name = 'moon.pkg.json',
-                  url = '/home/tonyfettes/workspace/moonbit.nvim/schemas/pkg.schema.json',
-                },
-              },
-            },
             validate = { enable = true },
           }
         }
