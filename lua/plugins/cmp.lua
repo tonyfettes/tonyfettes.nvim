@@ -9,7 +9,7 @@ return {
   opts = function()
     return {
       snippets = { preset = 'luasnip' },
-      keymap = { preset = 'default' },
+      keymap = { preset = 'super-tab' },
       completion = {
         documentation = {
           auto_show = true
