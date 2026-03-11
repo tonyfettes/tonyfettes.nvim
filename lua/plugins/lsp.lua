@@ -58,20 +58,7 @@ return {
             -- Make the server aware of Neovim runtime files
             workspace = {
               checkThirdParty = false,
-              library = {
-                vim.env.VIMRUNTIME
-                -- Depending on the usage, you might want to add additional paths
-                -- here.
-                -- '${3rd}/luv/library'
-                -- '${3rd}/busted/library'
-              }
-              -- Or pull in all of 'runtimepath'.
-              -- NOTE: this is a lot slower and will cause issues when working on
-              -- your own configuration.
-              -- See https://github.com/neovim/nvim-lspconfig/issues/3189
-              -- library = {
-              --   vim.api.nvim_get_runtime_file('', true),
-              -- }
+              library = vim.api.nvim_get_runtime_file('', true),
             }
           })
         end,
@@ -107,8 +94,8 @@ return {
           -- Buffer local mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
           local opts = { buffer = args.buf }
-          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+          -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+          -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
           vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
           vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
           vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)

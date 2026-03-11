@@ -1,46 +1,47 @@
 return {
-  'nvim-tree/nvim-tree.lua',
-  keys = {
-    { '<Leader>e', '<Cmd>NvimTreeFindFileToggle<CR>', desc = "Open Tree" },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    keys = {
+      { '<Leader>e', '<Cmd>Neotree toggle<CR>', desc = "Open Tree" },
+    },
+    -- neo-tree will lazily load itself
+    lazy = false,
+    ---@type neotree.Config
+    opts = {
+      default_component_configs = {
+        indent = {
+          padding = -1,
+        },
+        icon = {
+          folder_closed = "",
+          folder_open = "",
+          folder_empty = "",
+          folder_empty_open = "",
+          default = "",
+          use_filtered_colors = true,
+        },
+        name = {
+          trailing_slash = true
+        },
+        git_status = {
+          symbols = {
+            added = "A",
+            modified = "M",
+            deleted = "D",
+            renamed = "R",
+            -- Status type
+            untracked = "?",
+            unstaged = "",
+            staged = "S",
+            conflict = "!",
+          },
+        },
+      },
+    },
   },
-  config = function()
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
-
-    local tree = require 'nvim-tree'
-    local api = require 'nvim-tree.api'
-
-    local function on_attach(bufnr)
-      api.config.mappings.default_on_attach(bufnr)
-
-      local function change_directory_to(node)
-        if node == nil then
-          node = api.tree.get_node_under_cursor()
-        end
-        if node ~= nil and node.type == "directory" then
-          vim.api.nvim_set_current_dir(node.absolute_path)
-        end
-        api.tree.change_root_to_node(node)
-      end
-      vim.keymap.set('n', '<C-]>', change_directory_to,
-        { buffer = bufnr, noremap = true, silent = true, desc = "Change Directory to Node" })
-    end
-
-    tree.setup {
-      on_attach = on_attach,
-      renderer = {
-        icons = {
-          show = {
-            file = false,
-            folder = false,
-            folder_arrow = false,
-            git = false,
-            modified = false,
-            diagnostics = false,
-            bookmarks = false,
-          }
-        }
-      }
-    }
-  end
 }
