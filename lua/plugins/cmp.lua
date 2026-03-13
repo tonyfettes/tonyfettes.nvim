@@ -12,8 +12,18 @@ return {
       keymap = { preset = 'super-tab' },
       completion = {
         documentation = {
-          auto_show = true
-        }
+          auto_show = true,
+        },
+        menu = {
+          draw = {
+            columns = { { 'kind' }, { 'label', 'label_description', gap = 1 } },
+            components = {
+              kind = {
+                text = function(ctx) return '[' .. ctx.kind .. ']' end,
+              },
+            },
+          },
+        },
       },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer', 'git' },
