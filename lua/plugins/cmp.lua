@@ -4,6 +4,8 @@ return {
   event = { 'InsertEnter', 'CmdlineEnter' },
   dependencies = {
     'L3MON4D3/LuaSnip',
+    'zbirenbaum/copilot.lua',
+    'fang2hou/blink-copilot',
     'Kaiser-Yang/blink-cmp-git',
   },
   opts = function()
@@ -26,7 +28,7 @@ return {
         },
       },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'git' },
+        default = { 'copilot', 'lsp', 'path', 'snippets', 'buffer', 'git' },
         per_filetype = {
           gitcommit = { 'git', 'buffer' },
         },
@@ -34,6 +36,12 @@ return {
           lsp = {
             -- Show buffer items even when the LSP returns matches.
             fallbacks = {},
+          },
+          copilot = {
+            name = 'copilot',
+            module = 'blink-copilot',
+            score_offset = 100,
+            async = true,
           },
           git = {
             name = 'Git',
