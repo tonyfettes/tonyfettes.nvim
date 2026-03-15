@@ -7,7 +7,7 @@ return {
     opts = {
       bigfile = { enabled = true },
       dashboard = { enabled = false },
-      explorer = { enabled = true },
+      explorer = { enabled = false },
       indent = { enabled = false },
       input = { enabled = true },
       notifier = {
@@ -114,7 +114,7 @@ return {
       { "<leader>/",       function() Snacks.picker.grep() end,                                    desc = "Grep" },
       { "<leader>:",       function() Snacks.picker.commands() end,                                desc = "Command" },
       { "<leader>n",       function() Snacks.picker.notifications() end,                           desc = "Notification History" },
-      { "<leader>e",       function() Snacks.explorer() end,                                       desc = "File Explorer" },
+      -- { "<leader>e",       function() Snacks.explorer() end,                                       desc = "File Explorer" },
       -- find
       { "<leader>fb",      function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
       { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
@@ -152,43 +152,26 @@ return {
       -- LSP
       { "gd",              function() Snacks.picker.lsp_definitions() end,                         desc = "Goto Definition" },
       { "gD",              function() Snacks.picker.lsp_declarations() end,                        desc = "Goto Declaration" },
-      { "gr",              function() Snacks.picker.lsp_references() end,                          nowait = true,                     desc = "References" },
-      { "gI",              function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
-      { "gy",              function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto T[y]pe Definition" },
-      { "gai",             function() Snacks.picker.lsp_incoming_calls() end,                      desc = "C[a]lls Incoming" },
-      { "gao",             function() Snacks.picker.lsp_outgoing_calls() end,                      desc = "C[a]lls Outgoing" },
-      { "<leader>ss",      function() Snacks.picker.lsp_symbols() end,                             desc = "LSP Symbols" },
-      { "<leader>sS",      function() Snacks.picker.lsp_workspace_symbols() end,                   desc = "LSP Workspace Symbols" },
+      { "grr",             function() Snacks.picker.lsp_references() end,                          nowait = true,                     desc = "References" },
+      { "gri",             function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
+      { "grt",             function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto T[y]pe Definition" },
+      { "gri",             function() Snacks.picker.lsp_incoming_calls() end,                      desc = "C[a]lls Incoming" },
+      { "gro",             function() Snacks.picker.lsp_outgoing_calls() end,                      desc = "C[a]lls Outgoing" },
+      { "<leader>fs",      function() Snacks.picker.lsp_symbols() end,                             desc = "LSP Symbols" },
+      { "<leader>fS",      function() Snacks.picker.lsp_workspace_symbols() end,                   desc = "LSP Workspace Symbols" },
       -- Other
       { "<leader>Z",       function() Snacks.zen.zoom() end,                                       desc = "Toggle Zoom" },
       { "<leader>.",       function() Snacks.scratch() end,                                        desc = "Toggle Scratch Buffer" },
       { "<leader>S",       function() Snacks.scratch.select() end,                                 desc = "Select Scratch Buffer" },
-      { "<leader>n",       function() Snacks.notifier.show_history() end,                          desc = "Notification History" },
       { "<leader>bd",      function() Snacks.bufdelete() end,                                      desc = "Delete Buffer" },
       { "<leader>cR",      function() Snacks.rename.rename_file() end,                             desc = "Rename File" },
-      { "<leader>gB",      function() Snacks.gitbrowse() end,                                      desc = "Git Browse",               mode = { "n", "v" } },
-      { "<leader>gg",      function() Snacks.lazygit() end,                                        desc = "Lazygit" },
-      { "<leader>un",      function() Snacks.notifier.hide() end,                                  desc = "Dismiss All Notifications" },
+      { "<leader>nh",      function() Snacks.notifier.show_history() end,                          desc = "Notification History" },
+      { "<leader>nd",      function() Snacks.notifier.hide() end,                                  desc = "Dismiss All Notifications" },
+      { "<m-;>",           function() Snacks.terminal() end,                                       desc = "Toggle Terminal",          mode = { "n" } },
+      { "<c-_>",           function() Snacks.terminal() end,                                       desc = "which_key_ignore" },
+      { "<m-;>",           "<cmd>close<cr>",                                                       desc = "Toggle Terminal",          mode = { "t" } },
       { "]]",              function() Snacks.words.jump(vim.v.count1) end,                         desc = "Next Reference",           mode = { "n", "t" } },
       { "[[",              function() Snacks.words.jump(-vim.v.count1) end,                        desc = "Prev Reference",           mode = { "n", "t" } },
-      {
-        "<leader>N",
-        desc = "Neovim News",
-        function()
-          Snacks.win({
-            file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
-            width = 0.6,
-            height = 0.6,
-            wo = {
-              spell = false,
-              wrap = false,
-              signcolumn = "yes",
-              statuscolumn = "",
-              conceallevel = 3,
-            },
-          })
-        end,
-      }
     },
     init = function()
       vim.api.nvim_create_autocmd("User", {
