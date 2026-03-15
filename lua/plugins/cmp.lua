@@ -7,6 +7,7 @@ return {
     'zbirenbaum/copilot.lua',
     'fang2hou/blink-copilot',
     'Kaiser-Yang/blink-cmp-git',
+    "Kaiser-Yang/blink-cmp-avante",
   },
   opts = function()
     return {
@@ -28,11 +29,18 @@ return {
         },
       },
       sources = {
-        default = { 'copilot', 'lsp', 'path', 'snippets', 'buffer', 'git' },
+        default = { 'avante', 'copilot', 'lsp', 'path', 'snippets', 'buffer', 'git' },
         per_filetype = {
           gitcommit = { 'git', 'buffer' },
         },
         providers = {
+          avante = {
+            module = 'blink-cmp-avante',
+            name = 'Avante',
+            opts = {
+              -- options for blink-cmp-avante
+            }
+          },
           lsp = {
             -- Show buffer items even when the LSP returns matches.
             fallbacks = {},
