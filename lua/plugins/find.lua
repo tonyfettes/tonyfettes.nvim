@@ -165,8 +165,8 @@ return {
       { "grt",             function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto T[y]pe Definition" },
       { "gri",             function() Snacks.picker.lsp_incoming_calls() end,                      desc = "C[a]lls Incoming" },
       { "gro",             function() Snacks.picker.lsp_outgoing_calls() end,                      desc = "C[a]lls Outgoing" },
-      { "<leader>fs",      function() Snacks.picker.lsp_symbols() end,                             desc = "LSP Symbols" },
-      { "<leader>fS",      function() Snacks.picker.lsp_workspace_symbols() end,                   desc = "LSP Workspace Symbols" },
+      { "<leader>ss",      function() Snacks.picker.lsp_symbols() end,                             desc = "LSP Symbols" },
+      { "<leader>sS",      function() Snacks.picker.lsp_workspace_symbols() end,                   desc = "LSP Workspace Symbols" },
       -- Other
       { "<leader>Z",       function() Snacks.zen.zoom() end,                                       desc = "Toggle Zoom" },
       { "<leader>.",       function() Snacks.scratch() end,                                        desc = "Toggle Scratch Buffer" },
