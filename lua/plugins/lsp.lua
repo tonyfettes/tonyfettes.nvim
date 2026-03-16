@@ -76,6 +76,7 @@ return {
         'pyright',
         'texlab',
         'lua_ls',
+        'rust_analyzer',
       })
 
       -- Global mappings.
