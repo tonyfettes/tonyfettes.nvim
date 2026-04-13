@@ -9,7 +9,7 @@ return {
           source = "diagnostics",
           groups = {
             { "directory", format = "{dirname}" },
-            { "filename", format = "{basename} {count}" },
+            { "filename",  format = "{basename} {count}" },
           },
           sort = { "severity", "filename", "pos", "message" },
           format = "{severity_icon} {message:md} {item.source} {code} {pos}",
