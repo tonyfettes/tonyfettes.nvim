@@ -58,4 +58,9 @@ return {
       vim.keymap.set({ 'n', 't' }, '<M-j>', '<Cmd>NavigatorDown<CR>')
     end
   },
+
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    opts = {}
+  }
 }
