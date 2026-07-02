@@ -35,19 +35,6 @@ return {
   },
 
   {
-    "nvim-neorg/neorg",
-    dependencies = {
-      { "vhyrro/luarocks.nvim", priority = 1000, config = true }
-    },
-    ft = "norg",
-    opts = {
-      load = {
-        ["core.defaults"] = {},
-      },
-    },
-  },
-
-  {
     "numToStr/Navigator.nvim",
     config = function()
       local navigator = require 'Navigator'
